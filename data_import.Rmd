@@ -1,0 +1,73 @@
+---
+title: "Data Import"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+```
+
+## Read in some data
+
+Read in the litters dataset.
+
+```{r}
+litters_df = read_csv("./data/FAS_litters.csv")
+litters_df = janitor::clean_names(litters_df)
+```
+
+## Take a look
+
+Print in the console
+
+```{r}
+litters_df
+```
+
+```{r}
+tail(litters_df)
+```
+
+```{r}
+skimr::skim(litters_df)
+```
+
+## Options
+
+..., skip = 10, col_names = FALSE, na = c("", "NA", "999", "."), col_types...)
+Check out `?read_csv` for more information
+
+## Other formats
+
+Excel file
+```{r}
+mlb_df = read_excel("./data/mlb11.xlsx", range = "A1:F7")
+mlb_df
+```
+
+SAS file
+```{r}
+pulse_df = haven::read_sas("./data/public_pulse_data.sas7bdat")
+pulse_df
+```
+
+## Comparison with base R
+
+Why not `read.csv`?
+
+```{r}
+litters_readr = read_csv("./data/FAS_litters.csv")
+litters_base = read.csv("./data/FAS_litters.csv")
+litters_base
+litters_readr
+```
+
+## Exporting Data
+
+Export mlb subtable
+
+```{r}
+write_csv(mlb_df, "./data/mlb_sub.csv")
+```
+
