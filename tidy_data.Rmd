@@ -119,3 +119,10 @@ fas_df =
   relocate(litter_number, dose, day_of_tx)
 ```
 
+```{r}
+lotr_tidy %>% 
+  pull(words) %>% 
+  mean() %>% 
+  round()
+```
+
